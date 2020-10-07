@@ -483,8 +483,8 @@
         <div class="container">
             <h3>{{if eq .Winner "cat"}}🐱{{else}}🐶{{end}} {{.Winner}} wins!</h3>
             <dl>
-                <dd class="percentage percentage-{{index .Percentages "cat"}}"><span class="text">🐱: {{index .Percentages "cat"}}%</span></dd>
-                <dd class="percentage percentage-{{index .Percentages "dog"}}"><span class="text">🐶: {{index .Percentages "dog"}}%</span></dd>
+                <dd class="percentage percentage-{{index .Percentages "cat"}}"><span class="text">🐱: {{index .Counts "cat"}} ({{index .Percentages "cat"}}%)</span></dd>
+                <dd class="percentage percentage-{{index .Percentages "dog"}}"><span class="text">🐶: {{index .Counts "dog"}} ({{index .Percentages "dog"}}%)</span></dd>
             </dl>
         </div>
     </body>

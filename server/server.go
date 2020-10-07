@@ -22,6 +22,7 @@ type Server struct {
 // page holds the data needed to render the "results" web page.
 type page struct {
 	Winner string
+	Counts map[string]int
 	Percentages map[string]int
 }
 
@@ -53,6 +54,7 @@ func (s *Server) handleView() http.HandlerFunc {
 		}
 		renderTemplate(w, "index", page{
 			Winner: getWinner(resultCounts),
+			Counts: getCounts(resultCounts),
 			Percentages: getPercentages(resultCounts),
 		})
 	}
@@ -95,6 +97,14 @@ func getWinner(rcs []resultCount) string {
 	return "dog"
 }
 
+func getCounts (rcs []resultCount) map[string]int {
+	m := make(map[string]int)
+	for _, rc := range rcs {
+		m[rc.Result] = rc.Count
+	}
+	return m
+}
+
 func getPercentages(rcs []resultCount) map[string]int {
 	sum := 0
 	for _, rc := range rcs {
@@ -105,7 +115,7 @@ func getPercentages(rcs []resultCount) map[string]int {
 
 	m := make(map[string]int)
 	for _, rc := range rcs {
-		m[rc.Result] = int(math.Round(float64(rc.Count)/(float64(sum))))
+		m[rc.Result] = int(math.Round(float64(rc.Count)/(float64(sum)) * 100))
 	}
 	return m
 }
