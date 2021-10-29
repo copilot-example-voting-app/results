@@ -54,7 +54,7 @@
                 justify-content: flex-end;
             }
             .percentage {
-                font-size: .8em;
+                font-size: 1.2em;
                 line-height: 1;
                 text-transform: uppercase;
                 width: 100%;
@@ -482,8 +482,8 @@
         <div class="container">
             <h3>{{if eq .Winner "cat"}}🐱{{else}}🐶{{end}} {{.Winner}} wins!</h3>
             <dl>
-                <dd class="percentage percentage-{{index .Percentages "cat"}}"><span class="text">🐱: {{index .Counts "cat"}} ({{index .Percentages "cat"}}%)</span></dd>
-                <dd class="percentage percentage-{{index .Percentages "dog"}}"><span class="text">🐶: {{index .Counts "dog"}} ({{index .Percentages "dog"}}%)</span></dd>
+                <dd class="percentage percentage-{{index .Percentages "cat"}}"><span class="text">{{if eq .Winner "cat"}}🐱 😏 {{else}}🐱 😢 {{end}}: {{index .Counts "cat"}} ({{index .Percentages "cat"}}%)</span></dd>
+                <dd class="percentage percentage-{{index .Percentages "dog"}}"><span class="text">{{if eq .Winner "dog"}}🐶 😏 {{else}}🐶 😢 {{end}}: {{index .Counts "dog"}} ({{index .Percentages "dog"}}%)</span></dd>
             </dl>
         </div>
     </body>
